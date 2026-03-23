@@ -15,9 +15,15 @@ export async function getSupabaseServerClient() {
       getAll() {
         return cookieStore.getAll();
       },
-      setAll() {
-        // Auth middleware is not in place yet. This keeps the bootstrap client
-        // safe to import without pretending cookie writes already exist.
+      setAll(cookiesToSet) {
+        try {
+          for (const cookie of cookiesToSet) {
+            cookieStore.set(cookie.name, cookie.value, cookie.options);
+          }
+        } catch {
+          // Server Components can read cookies but may not be able to write
+          // them. Proxy/route handlers cover refresh and session writes.
+        }
       },
     },
   });

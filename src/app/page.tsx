@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { env, hasStripeEnv, hasSupabaseBrowserEnv } from "@/lib/env";
 
 export default function Home() {
@@ -61,6 +63,20 @@ export default function Home() {
                 <span className="rounded-full border border-stone-300 px-4 py-2 font-medium text-stone-700">
                   7-day trial, card up front
                 </span>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/sign-in"
+                  className="rounded-full bg-stone-950 px-5 py-3 text-sm font-medium text-white"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/app"
+                  className="rounded-full border border-stone-300 px-5 py-3 text-sm font-medium text-stone-700"
+                >
+                  Open app shell
+                </Link>
               </div>
             </div>
 
